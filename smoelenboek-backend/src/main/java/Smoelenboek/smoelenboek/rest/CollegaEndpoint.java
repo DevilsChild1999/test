@@ -47,6 +47,16 @@ public class CollegaEndpoint {
 		Optional<Collega>optional=cs.vindBijID(collegaid);
 		Collega dbcollega = optional.get();
 		dbcollega.setVoornaam(newCollega.getVoornaam());
+		dbcollega.setAchternaam(newCollega.getAchternaam());
+		dbcollega.setEmail(newCollega.getEmail());
+		dbcollega.setTelefoonnummer(newCollega.getTelefoonnummer());
+		dbcollega.setWoonplaats(newCollega.getWoonplaats());
+		dbcollega.setTeamsoort(newCollega.getTeamsoort());
+		dbcollega.setTeamnaam(newCollega.getTeamnaam());
+		dbcollega.setRol(newCollega.getRol());
+		dbcollega.setWerkzaamheden(newCollega.getWerkzaamheden());
+		dbcollega.setSpecialiteiten(newCollega.getSpecialiteiten());
+		
 		cs.save(dbcollega);
 		
 	}
