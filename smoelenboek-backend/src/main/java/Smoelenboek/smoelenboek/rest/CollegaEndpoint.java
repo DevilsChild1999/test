@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Smoelenboek.smoelenboek.domein.Collega;
@@ -19,10 +20,12 @@ public class CollegaEndpoint {
 	@Autowired
 	CollegaService cs;
 	//vind alles
-	@GetMapping ("decollegas")
-	public Iterable<Collega> alleCollegas() {
-		return cs.geefAlleCollegas();
-	}
+	//@GetMapping ("decollegas")
+	//public Iterable<Collega> alleCollegas() {
+		//return cs.geefAlleCollegas();
+	//}
+	
+	
 	//voeg toe
 	@PostMapping("voegcollegatoe")
 	public void voegCollegaToe(@RequestBody Collega collega) {
@@ -50,4 +53,14 @@ public class CollegaEndpoint {
 		cs.save(dbcollega);
 		
 	}
+	
+    @GetMapping("decollegas")
+    public Iterable<Collega> haalCollegasOp(@RequestParam(required = false) String teamnaam) {
+        if (teamnaam != null) {
+            return cs.haalCollegasOp(teamnaam);
+        } else {
+            // Als er geen teamnaam is opgegeven, haal alle collega's op
+            return cs.haalAlleCollegasOp();
+        }
+    }
 }
