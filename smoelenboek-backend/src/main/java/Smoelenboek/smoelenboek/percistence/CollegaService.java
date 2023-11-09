@@ -1,5 +1,6 @@
 package Smoelenboek.smoelenboek.percistence;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ public class CollegaService {
 	@Autowired
 	CollegaRepository cr;
 	// vind alles
-	public Iterable<Collega> geefAlleCollegas() {
-		return cr.findAll();
-	}
+	//public Iterable<Collega> geefAlleCollegas() {
+	//	return cr.findAll();
+	//}
+	
+	
 	// maak aan
 	public void slaCollegaOp(Collega collega) {
 		cr.save(collega);
@@ -32,8 +35,17 @@ public class CollegaService {
 	// opslaan
 	public void save(Collega dbcollega) {
 		cr.save(dbcollega);
-		
 	}
+	
+	
+	
+    public List<Collega> haalCollegasOp(String teamnaam) {
+        return cr.findByTeamnaam(teamnaam);
+    }
+
+    public Iterable<Collega> haalAlleCollegasOp() {
+        return cr.findAll();
+    }
 	
 	
 }
